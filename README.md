@@ -46,7 +46,7 @@ Each index file can export the following properties:
 ## To Use
 
 ``` javascript
-import { makeExecutableSchema } from 'apollo-tools'
+import { makeExecutableSchema } from 'graphql-tools'
 
 import GraphQLDir from '@mishguru/graphqldir';
 const graphqldir = new GraphQLDir(`${__dirname}/graphql`);
@@ -61,7 +61,7 @@ const types = graphqldir.createTypes();
 const resolvers = graphqldir.createResolvers();
 ```
 
-Note that `apollo-tools` is not a dependency of this library. This is to avoid
+Note that `graphql-tools` is not a dependency of this library. This is to avoid
 any duplication or version misatches of the `graphql` package.
 
 ## File layouts
