@@ -1,11 +1,11 @@
 {
-  "name": "@stayradiated/saturn-gql",
+  "name": "@mishguru/graphqldir",
   "version": "1.4.0",
   "description": "Package modularized apollo-server schema",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
-  "repository": "https://github.com/stayradiated/saturn-gql",
-  "author": "George Czabania",
+  "repository": "https://github.com/mishguruorg/graphqldir",
+  "author": "Mish Guru",
   "contributors": [
     "Brian Kurtz (https://github.com/bskurtz)",
     "George Czabania (https://github.com/stayradiated)"
@@ -14,6 +14,7 @@
   "scripts": {
     "test": "pkg-test",
     "build": "pkg-build",
+    "lint": "pkg-lint",
     "tidy": "pkg-tidy"
   },
   "devDependencies": {

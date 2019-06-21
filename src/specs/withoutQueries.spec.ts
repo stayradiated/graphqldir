@@ -2,7 +2,7 @@ import anyTest, { TestInterface } from 'ava'
 import { makeExecutableSchema } from 'graphql-tools'
 import { GraphQLList, GraphQLInt, GraphQLNonNull, GraphQLString } from 'graphql'
 
-import Saturn from '../index'
+import GraphQLDir from '../index'
 
 const test = anyTest as TestInterface<{
   types: any,
@@ -11,10 +11,10 @@ const test = anyTest as TestInterface<{
 }>
 
 test.beforeEach((t) => {
-  const saturn = new Saturn(`${__dirname}/withoutQueries`)
-  const types = saturn.createTypes()
-  const resolvers = saturn.createResolvers()
-  const schema = makeExecutableSchema(saturn.makeSchema())
+  const graphqldir = new GraphQLDir(`${__dirname}/withoutQueries`)
+  const types = graphqldir.createTypes()
+  const resolvers = graphqldir.createResolvers()
+  const schema = makeExecutableSchema(graphqldir.makeSchema())
 
   t.context = {
     types,

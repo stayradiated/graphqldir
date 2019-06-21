@@ -1,15 +1,18 @@
-# Saturn-GQL
+# GraphQLDir
+
+This is a fork of [Saturn-GQL](https://github.com/electric-it/saturn-gql).
 
 ## Install
+
 ```
-npm i @stayradiated/saturn-gql
+npm i @mishguru/graphqldir
 ```
 
 Has your GraphQL api code grown out of control? Does your GraphQL api sit in a
 single file with thousands of lines of code? Unsure of the best way to
-logically separate it all? Saturn-GQL is here to help!
+logically separate it all? GraphQLDir is here to help!
 
-Saturn-GQL takes care of packaging up your modularized
+GraphQLDir takes care of packaging up your modularized
 [graphql-tools](https://github.com/apollographql/graphql-tools) schema,
 allowing you to separate your types, queries and mutations into logical
 groupings.
@@ -45,17 +48,17 @@ Each index file can export the following properties:
 ``` javascript
 import { makeExecutableSchema } from 'apollo-tools'
 
-import Saturn from '@stayradiated/saturn-gql';
-const saturn = new Saturn(`${__dirname}/graphql`);
+import GraphQLDir from '@mishguru/graphqldir';
+const graphqldir = new GraphQLDir(`${__dirname}/graphql`);
 
 // Graphql Schema
-const schema = makeExecutableSchema(saturn.makeSchema());
+const schema = makeExecutableSchema(graphqldir.makeSchema());
 
 // just types
-const types = saturn.createTypes();
+const types = graphqldir.createTypes();
 
 // just resolvers
-const resolvers = saturn.createResolvers();
+const resolvers = graphqldir.createResolvers();
 ```
 
 Note that `apollo-tools` is not a dependency of this library. This is to avoid
