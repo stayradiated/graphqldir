@@ -15,7 +15,8 @@
     "test": "pkg-test",
     "build": "pkg-build",
     "lint": "pkg-lint",
-    "tidy": "pkg-tidy"
+    "tidy": "pkg-tidy",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@mishguru/package": "7.0.1",
