@@ -126,7 +126,7 @@ This is used to define subscriptions.
 
 ``` javascript
 export const typeSubscription = `
-  postAdded(): Post
+  postAdded: Post
 `;
 ```
 

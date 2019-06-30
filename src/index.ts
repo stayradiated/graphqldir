@@ -38,24 +38,24 @@ class SchemaGenerator {
 
     if (queryDefs.length > 0) {
       typeDefs.push(`# the schema allows the following queries:
-type RootQuery {
+type Query {
   ${queryDefs.join('\n  ')}
 }`)
-      schemaDefs.push('query: RootQuery')
+      schemaDefs.push('query: Query')
     }
     if (mutationDefs.length > 0) {
       typeDefs.push(`# the schema allows the following mutations:
-type Mutations {
+type Mutation {
   ${mutationDefs.join('\n  ')}
 }`)
-      schemaDefs.push('mutation: Mutations')
+      schemaDefs.push('mutation: Mutation')
     }
     if (subscriptionDefs.length > 0) {
       typeDefs.push(`# the schema allows the following subscriptions:
-type Subscriptions {
+type Subscription {
   ${subscriptionDefs.join('\n  ')}
 }`)
-      schemaDefs.push('subscriptions: Subscriptions')
+      schemaDefs.push('subscription: Subscription')
     }
 
     typeDefs.push(`schema {
@@ -84,15 +84,15 @@ type Subscriptions {
     }
 
     if (!isEmpty(rootQuery)) {
-      objToReturn.RootQuery = rootQuery
+      objToReturn.Query = rootQuery
     }
 
     if (!isEmpty(rootMutations)) {
-      objToReturn.Mutations = rootMutations
+      objToReturn.Mutation = rootMutations
     }
 
     if (!isEmpty(rootSubscriptions)) {
-      objToReturn.Subscriptions = rootSubscriptions
+      objToReturn.Subscription = rootSubscriptions
     }
 
     return objToReturn

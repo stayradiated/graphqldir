@@ -33,14 +33,14 @@ test('should return an object', (t) => {
   t.is(typeof resolvers, 'object')
 })
 
-test('should return an RootQuery key', (t) => {
+test('should return an Query key', (t) => {
   const { resolvers } = t.context
-  t.falsy(resolvers.RootQuery)
+  t.falsy(resolvers.Query)
 })
 
-test('should return an Mutations key', (t) => {
+test('should return an Mutation key', (t) => {
   const { resolvers } = t.context
-  t.truthy(resolvers.Mutations)
+  t.truthy(resolvers.Mutation)
 })
 
 test('should return an Author key', (t) => {
@@ -72,19 +72,19 @@ test('should return a graphql schema', (t) => {
 
 test('schema should NOT return a posts root query type', (t) => {
   const { schema } = t.context
-  const query = schema.getTypeMap().RootQuery
+  const query = schema.getTypeMap().Query
   t.falsy(query)
 })
 
 test('schema should return a author root query type', (t) => {
   const { schema } = t.context
-  const query = schema.getTypeMap().RootQuery
+  const query = schema.getTypeMap().Query
   t.falsy(query)
 })
 
 test('schema should return a upvotePost mutation type', (t) => {
   const { schema } = t.context
-  const query = schema.getTypeMap().Mutations
+  const query = schema.getTypeMap().Mutation
   t.truthy(query)
 })
 

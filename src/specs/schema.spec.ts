@@ -33,28 +33,28 @@ test('should return an object', (t) => {
   t.is(typeof resolvers, 'object')
 })
 
-test('should return an RootQuery key', (t) => {
+test('should return an Query key', (t) => {
   const { resolvers } = t.context
-  t.truthy(resolvers.RootQuery)
+  t.truthy(resolvers.Query)
 })
 
-test('RootQuery should have posts and author keys and they should both be functions', (t) => {
+test('Query should have posts and author keys and they should both be functions', (t) => {
   const { resolvers } = t.context
-  t.truthy(resolvers.RootQuery.posts)
-  t.truthy(resolvers.RootQuery.author)
-  t.is(typeof resolvers.RootQuery.posts, 'function')
-  t.is(typeof resolvers.RootQuery.author, 'function')
+  t.truthy(resolvers.Query.posts)
+  t.truthy(resolvers.Query.author)
+  t.is(typeof resolvers.Query.posts, 'function')
+  t.is(typeof resolvers.Query.author, 'function')
 })
 
-test('should return an Mutations key', (t) => {
+test('should return an Mutation key', (t) => {
   const { resolvers } = t.context
-  t.truthy(resolvers.Mutations)
+  t.truthy(resolvers.Mutation)
 })
 
-test('Mutations should have upvotePost key and should be a function', (t) => {
+test('Mutation should have upvotePost key and should be a function', (t) => {
   const { resolvers } = t.context
-  t.truthy(resolvers.Mutations.upvotePost)
-  t.is(typeof resolvers.Mutations.upvotePost, 'function')
+  t.truthy(resolvers.Mutation.upvotePost)
+  t.is(typeof resolvers.Mutation.upvotePost, 'function')
 })
 
 test('should return an Author key', (t) => {
@@ -87,7 +87,7 @@ test('should return a graphql schema', (t) => {
 test('schema should return a posts root query type', (t) => {
   const { schema } = t.context
 
-  const query = schema.getTypeMap().RootQuery.getFields().posts
+  const query = schema.getTypeMap().Query.getFields().posts
   t.truthy(query)
 
   const post = schema.getTypeMap().Post
@@ -97,7 +97,7 @@ test('schema should return a posts root query type', (t) => {
 test('schema should return a author root query type', (t) => {
   const { schema } = t.context
 
-  const query = schema.getTypeMap().RootQuery.getFields().author
+  const query = schema.getTypeMap().Query.getFields().author
   t.truthy(query)
 
   const author = schema.getTypeMap().Author
@@ -109,7 +109,7 @@ test('schema should return a author root query type', (t) => {
 test('schema should return a upvotePost mutation type', (t) => {
   const { schema } = t.context
 
-  const query = schema.getTypeMap().Mutations.getFields().upvotePost
+  const query = schema.getTypeMap().Mutation.getFields().upvotePost
   t.truthy(query)
 
   const post = schema.getTypeMap().Post
