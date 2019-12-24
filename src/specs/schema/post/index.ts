@@ -30,17 +30,17 @@ export const resolvers = {
 }
 
 export const subscriptions = {
-  postAdded: async function* () {
+  postAdded: async function * () {
     while (true) {
       yield {
         id: 1,
         authorId: 1,
         title: 'Introduction to GraphQL',
-        votes: 2
+        votes: 2,
       }
       await new Promise((resolve) => setTimeout(resolve, 1000))
     }
-  }
+  },
 }
 
 export const type = `
