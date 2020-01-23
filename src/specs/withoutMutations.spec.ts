@@ -10,7 +10,7 @@ const test = anyTest as TestInterface<{
 }>
 
 test.beforeEach((t) => {
-  const schema = makeSchema({ path: `${__dirname}/withoutMutations` })
+  const schema = makeSchema(`${__dirname}/withoutMutations`)
   const executableSchema = makeExecutableSchema(schema)
 
   t.context = {

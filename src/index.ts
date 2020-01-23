@@ -3,16 +3,22 @@ import buildTypeDefs from './build-type-defs'
 import buildResolvers from './build-resolvers'
 
 interface MakeSchemaOptions {
-  path: string,
   extensions?: string[],
 }
 
 const DEFAULT_EXTENSIONS = ['.js', '.ts']
 
-const makeSchema = (options: MakeSchemaOptions) => {
-  const { path, extensions = DEFAULT_EXTENSIONS } = options
+const makeSchema = (
+  paths: string | string[],
+  options: MakeSchemaOptions = {},
+) => {
+  const { extensions = DEFAULT_EXTENSIONS } = options
 
-  const items = readdir(path, extensions)
+  if (typeof paths === 'string') {
+    paths = [paths]
+  }
+
+  const items = paths.map((path) => readdir(path, extensions)).flat()
 
   return {
     typeDefs: buildTypeDefs(items),

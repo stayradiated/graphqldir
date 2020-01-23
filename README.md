@@ -9,6 +9,10 @@ This project started as a fork of
 npm install @stayradiated/graphqldir graphql-tools
 ```
 
+## Documentation
+
+API docs are available at https://stayradiated.github.io/graphqldir/.
+
 ## What is this?
 
 Has your GraphQL api code grown out of control? Does your GraphQL api sit in a
@@ -53,7 +57,7 @@ import makeSchema from '@stayradiated/graphqldir'
 import { makeExecutableSchema } from 'graphql-tools'
 
 const graphql = makeExecutableSchema(
-  makeSchema({ path: `${__dirname}/schema` })
+  makeSchema(`${__dirname}/schema`)
 )
 ```
 
