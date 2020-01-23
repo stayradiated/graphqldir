@@ -1,3 +1,7 @@
+/**
+ * @hidden
+ */
+
 export interface DirExports {
   resolvers?: Record<string, Function>,
   queries?: Record<string, Function>,

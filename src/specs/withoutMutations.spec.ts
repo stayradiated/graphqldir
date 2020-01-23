@@ -2,110 +2,106 @@ import anyTest, { TestInterface } from 'ava'
 import { makeExecutableSchema } from 'graphql-tools'
 import { GraphQLList, GraphQLInt, GraphQLNonNull, GraphQLString } from 'graphql'
 
-import GraphQLDir from '../index'
+import makeSchema from '../index'
 
 const test = anyTest as TestInterface<{
-  types: any,
-  resolvers: any,
   schema: any,
+  executableSchema: any,
 }>
 
 test.beforeEach((t) => {
-  const graphqldir = new GraphQLDir(`${__dirname}/withoutMutations`)
-  const types = graphqldir.createTypes()
-  const resolvers = graphqldir.createResolvers()
-  const schema = makeExecutableSchema(graphqldir.makeSchema())
+  const schema = makeSchema({ path: `${__dirname}/withoutMutations` })
+  const executableSchema = makeExecutableSchema(schema)
 
   t.context = {
-    types,
-    resolvers,
     schema,
+    executableSchema,
   }
 })
 
-test('should return a string', (t) => {
-  const { types } = t.context
-  t.is(typeof types, 'string')
+test('schema.typeDefs - should return a string', (t) => {
+  const { schema } = t.context
+  t.is(typeof schema.typeDefs, 'string')
 })
 
 test('should return an object', (t) => {
-  const { resolvers } = t.context
-  t.is(typeof resolvers, 'object')
+  const { schema } = t.context
+  t.is(typeof schema.resolvers, 'object')
 })
 
 test('should return an Query key', (t) => {
-  const { resolvers } = t.context
-  t.truthy(resolvers.Query)
+  const { schema } = t.context
+  t.truthy(schema.resolvers.Query)
 })
 
 test('Query should have posts and author keys and they should both be functions', (t) => {
-  const { resolvers } = t.context
-  t.truthy(resolvers.Query.posts)
-  t.truthy(resolvers.Query.author)
-  t.is(typeof resolvers.Query.posts, 'function')
-  t.is(typeof resolvers.Query.author, 'function')
+  const { schema } = t.context
+  t.truthy(schema.resolvers.Query.posts)
+  t.truthy(schema.resolvers.Query.author)
+  t.is(typeof schema.resolvers.Query.posts, 'function')
+  t.is(typeof schema.resolvers.Query.author, 'function')
 })
 
 test('should return an Mutation key', (t) => {
-  const { resolvers } = t.context
-  t.falsy(resolvers.Mutation)
+  const { schema } = t.context
+  t.falsy(schema.resolvers.Mutation)
 })
 
 test('should return an Author key', (t) => {
-  const { resolvers } = t.context
-  t.truthy(resolvers.Author)
+  const { schema } = t.context
+  t.truthy(schema.resolvers.Author)
 })
 
 test('Author should have posts key and should be a function', (t) => {
-  const { resolvers } = t.context
-  t.truthy(resolvers.Author.posts)
-  t.is(typeof resolvers.Author.posts, 'function')
+  const { schema } = t.context
+  t.truthy(schema.resolvers.Author.posts)
+  t.is(typeof schema.resolvers.Author.posts, 'function')
 })
 
 test('should return an Post key', (t) => {
-  const { resolvers } = t.context
-  t.truthy(resolvers.Author)
+  const { schema } = t.context
+  t.truthy(schema.resolvers.Author)
 })
 
 test('Post should have author key and should be a function', (t) => {
-  const { resolvers } = t.context
-  t.truthy(resolvers.Post.author)
-  t.is(typeof resolvers.Post.author, 'function')
+  const { schema } = t.context
+  t.truthy(schema.resolvers.Post.author)
+  t.is(typeof schema.resolvers.Post.author, 'function')
 })
 
 test('should return a graphql schema', (t) => {
-  const { schema } = t.context
-  t.truthy(schema)
+  const { executableSchema } = t.context
+  t.truthy(executableSchema)
 })
 
 test('schema should return a posts root query type', (t) => {
-  const { schema } = t.context
-  const query = schema.getTypeMap().Query.getFields().posts
+  const { executableSchema } = t.context
+  const query = executableSchema.getTypeMap().Query.getFields().posts
   t.truthy(query)
-  const post = schema.getTypeMap().Post
+  const post = executableSchema.getTypeMap().Post
   t.deepEqual(query.type, new GraphQLList(post))
 })
 
 test('schema should return a author root query type', (t) => {
-  const { schema } = t.context
-  const query = schema.getTypeMap().Query.getFields().author
+  const { executableSchema } = t.context
+  const query = executableSchema.getTypeMap().Query.getFields().author
   t.truthy(query)
-  const author = schema.getTypeMap().Author
+  const author = executableSchema.getTypeMap().Author
   t.is(query.type, author)
   t.is(query.args[0].name, 'id')
   t.deepEqual(query.args[0].type, new GraphQLNonNull(GraphQLInt))
 })
 
 test('schema should NOT return a upvotePost mutation type', (t) => {
-  const { schema } = t.context
-  const query = schema.getTypeMap().Mutation
+  const { executableSchema } = t.context
+  const query = executableSchema.getTypeMap().Mutation
   t.falsy(query)
 })
 
 test('should have a Author type', (t) => {
-  const { schema } = t.context
+  const { executableSchema } = t.context
 
-  const type = schema.getTypeMap().Author
+  const type = executableSchema.getTypeMap().Author
   t.truthy(type)
 
   const fields = type.getFields()
@@ -118,14 +114,14 @@ test('should have a Author type', (t) => {
   t.is(fields.firstName.type, GraphQLString)
   t.is(fields.lastName.type, GraphQLString)
 
-  const post = schema.getTypeMap().Post
+  const post = executableSchema.getTypeMap().Post
   t.deepEqual(fields.posts.type, new GraphQLList(post))
 })
 
 test('should have a Post type', (t) => {
-  const { schema } = t.context
+  const { executableSchema } = t.context
 
-  const type = schema.getTypeMap().Post
+  const type = executableSchema.getTypeMap().Post
   t.truthy(type)
 
   const fields = type.getFields()
@@ -137,7 +133,7 @@ test('should have a Post type', (t) => {
   t.deepEqual(fields.id.type, new GraphQLNonNull(GraphQLInt))
   t.is(fields.title.type, GraphQLString)
 
-  const author = schema.getTypeMap().Author
+  const author = executableSchema.getTypeMap().Author
   t.is(fields.author.type, author)
   t.is(fields.votes.type, GraphQLInt)
 })

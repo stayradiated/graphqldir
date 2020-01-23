@@ -1,10 +1,25 @@
 import { readdirSync, existsSync } from 'fs'
 
-import { DirExports } from './types'
+/**
+ * @hidden
+ */
 
-const EXTENSIONS = ['.js', '.ts']
+export interface Directory {
+  resolvers?: Record<string, Function>,
+  queries?: Record<string, Function>,
+  mutations?: Record<string, Function>,
+  subscriptions?: Record<string, Function>,
+  type?: string,
+  typeQuery?: string,
+  typeMutation?: string,
+  typeSubscription?: string,
+}
 
-const loadFileItems = (path: string): DirExports => {
+/**
+ * @hidden
+ */
+
+const buildDirectory = (path: string): Directory => {
   const {
     resolvers,
     queries,
@@ -41,20 +56,24 @@ const loadFileItems = (path: string): DirExports => {
   }
 }
 
-const readdirItems = (path: string): DirExports[] => {
-  const items: DirExports[] = []
+/**
+ * @hidden
+ */
+
+const readdir = (path: string, extensions: string[]): Directory[] => {
+  const directories = [] as Directory[]
 
   readdirSync(path).forEach((dir) => {
-    for (const extension of EXTENSIONS) {
+    for (const extension of extensions) {
       const dirIndexPath = `${path}/${dir}/index${extension}`
       if (existsSync(dirIndexPath)) {
-        items.push(loadFileItems(dirIndexPath))
+        directories.push(buildDirectory(dirIndexPath))
         break
       }
     }
   })
 
-  return items
+  return directories
 }
 
-export default readdirItems
+export default readdir

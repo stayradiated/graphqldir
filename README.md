@@ -1,12 +1,15 @@
-# GraphQLDir
+![GraphQLDir](./GraphQLDir.png)
 
-This is a fork of [Saturn-GQL](https://github.com/electric-it/saturn-gql).
+This project started as a fork of
+[Saturn-GQL](https://github.com/electric-it/saturn-gql).
 
-## Install
+## Installation
 
 ```
-npm i @mishguru/graphqldir
+npm install @stayradiated/graphqldir graphql-tools
 ```
+
+## What is this?
 
 Has your GraphQL api code grown out of control? Does your GraphQL api sit in a
 single file with thousands of lines of code? Unsure of the best way to
@@ -22,17 +25,17 @@ structure similar to the diagram below. If you are already using
 [graphql-tools](https://github.com/apollographql/graphql-tools) this should be
 a fairly trivial step.
 
-``` shell
-graphql
-  group1
-    index.js
-  group2
-    index.js
-  group3
-    index.js
+```
+- graphql
+  - group1
+    - index.js
+  - group2
+    - index.js
+  - group3
+    - index.js
 ```
 
-Each index file can export the following properties:
+Each index file can export any of the following properties:
 
 - `resolvers`
 - `queries`
@@ -43,22 +46,15 @@ Each index file can export the following properties:
 - `typeMutation`
 - `typeSubscription`
 
-## To Use
+## Basic Usage
 
-``` javascript
+```javascript
+import makeSchema from '@stayradiated/graphqldir'
 import { makeExecutableSchema } from 'graphql-tools'
 
-import GraphQLDir from '@mishguru/graphqldir';
-const graphqldir = new GraphQLDir(`${__dirname}/graphql`);
-
-// Graphql Schema
-const schema = makeExecutableSchema(graphqldir.makeSchema());
-
-// just types
-const types = graphqldir.createTypes();
-
-// just resolvers
-const resolvers = graphqldir.createResolvers();
+const graphql = makeExecutableSchema(
+  makeSchema({ path: `${__dirname}/schema` })
+)
 ```
 
 Note that `graphql-tools` is not a dependency of this library. This is to avoid

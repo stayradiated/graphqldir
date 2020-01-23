@@ -1,5 +1,3 @@
-import { find, filter } from 'lodash'
-
 import { Author } from '../types'
 import { authors, posts } from '../data'
 
@@ -10,13 +8,16 @@ interface QueryAuthorArgs {
 const queries = {
   author: (_: void, args: QueryAuthorArgs) => {
     const { id } = args
-    find(authors, { id })
+    return authors.find((author) => author.id === id)
   },
 }
 
 const resolvers = {
   Author: {
-    posts: (author: Author) => filter(posts, { authorId: author.id }),
+    posts: (author: Author) =>
+      posts.filter((_author) => {
+        return _author.id === author.id
+      }),
   },
 }
 

@@ -1,5 +1,3 @@
-import { find } from 'lodash'
-
 import { Post } from '../types'
 import { authors, posts } from '../data'
 
@@ -14,7 +12,7 @@ interface UpvotePostArgs {
 export const mutations = {
   upvotePost: (_: void, args: UpvotePostArgs) => {
     const { postId } = args
-    const post = find(posts, { id: postId })
+    const post = posts.find((post) => post.id === postId)
     if (!post) {
       throw new Error(`Couldn't find post with id ${postId}`)
     }
@@ -25,7 +23,8 @@ export const mutations = {
 
 export const resolvers = {
   Post: {
-    author: (post: Post) => find(authors, { id: post.authorId }),
+    author: (post: Post) =>
+      authors.find((author) => author.id === post.authorId),
   },
 }
 
