@@ -2381,11 +2381,16 @@ img {
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
 			<p><img src="./GraphQLDir.png" alt="GraphQLDir"></p>
-			<p>This is a fork of <a href="https://github.com/electric-it/saturn-gql">Saturn-GQL</a>.</p>
-			<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-				<h2>Install</h2>
+			<p>This project started as a fork of
+			<a href="https://github.com/electric-it/saturn-gql">Saturn-GQL</a>.</p>
+			<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+				<h2>Installation</h2>
 			</a>
-			<pre><code><span class="hljs-built_in">npm</span> install @mishguru/graphqldir graphql-tools</code></pre><p>Has your GraphQL api code grown out of control? Does your GraphQL api sit in a
+			<pre><code><span class="hljs-built_in">npm</span> install @stayradiated/graphqldir graphql-tools</code></pre>
+			<a href="#what-is-this" id="what-is-this" style="color: inherit; text-decoration: none;">
+				<h2>What is this?</h2>
+			</a>
+			<p>Has your GraphQL api code grown out of control? Does your GraphQL api sit in a
 				single file with thousands of lines of code? Unsure of the best way to
 			logically separate it all? GraphQLDir is here to help!</p>
 			<p>GraphQLDir takes care of packaging up your modularized
@@ -2396,14 +2401,13 @@ img {
 				structure similar to the diagram below. If you are already using
 				<a href="https://github.com/apollographql/graphql-tools">graphql-tools</a> this should be
 			a fairly trivial step.</p>
-			<pre><code class="language-shell">graphql
-  group1
-    index.js
-  group2
-    index.js
-  group3
-    index.js</code></pre>
-			<p>Each index file can export the following properties:</p>
+			<pre><code><span class="hljs-bullet">- </span>graphql
+<span class="hljs-bullet">  - </span>group1
+<span class="hljs-bullet">    - </span>index.js
+<span class="hljs-bullet">  - </span>group2
+<span class="hljs-bullet">    - </span>index.js
+<span class="hljs-bullet">  - </span>group3
+<span class="hljs-bullet">    - </span>index.js</code></pre><p>Each index file can export any of the following properties:</p>
 			<ul>
 				<li><code>resolvers</code></li>
 				<li><code>queries</code></li>
@@ -2414,9 +2418,8 @@ img {
 				<li><code>typeMutation</code></li>
 				<li><code>typeSubscription</code></li>
 			</ul>
-			<p>###</p>
-			<a href="#to-use" id="to-use" style="color: inherit; text-decoration: none;">
-				<h2>To Use</h2>
+			<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
+				<h2>Basic Usage</h2>
 			</a>
 			<pre><code class="language-javascript"><span class="hljs-keyword">import</span> makeSchema <span class="hljs-keyword">from</span> <span class="hljs-string">'@stayradiated/graphqldir'</span>
 <span class="hljs-keyword">import</span> { makeExecutableSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-tools'</span>
@@ -2589,7 +2592,7 @@ limitations <span class="hljs-keyword">under</span> the License.</code></pre>
 				<div class="tsd-signature tsd-kind-icon">DEFAULT_<wbr>EXTENSIONS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;.js&#x27;, &#x27;.ts&#x27;]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/stayradiated/graphqldir/blob/55747f1/src/index.ts#L10">index.ts:10</a></li>
+						<li>Defined in <a href="https://github.com/stayradiated/graphqldir/blob/0f107ac/src/index.ts#L10">index.ts:10</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2606,7 +2609,7 @@ limitations <span class="hljs-keyword">under</span> the License.</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stayradiated/graphqldir/blob/55747f1/src/index.ts#L12">index.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/stayradiated/graphqldir/blob/0f107ac/src/index.ts#L12">index.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
