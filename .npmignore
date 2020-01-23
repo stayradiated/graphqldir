@@ -1,4 +1,8 @@
-test
-prettier.json
+dist/specs
+dist/*.js.map
+dist/tsconfig.tsbuildinfo
+docs
+node_modules
 src
-tsconfig.json
+.gitignore
+*.png
